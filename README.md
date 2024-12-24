@@ -39,59 +39,110 @@
   ![image](https://github.com/user-attachments/assets/d23445d8-b282-4633-9631-0f9c4c9e774b)
 
 
-# MyAngularApp
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+# Create basic from component 
 
-## Development server
+  # Step 1: Create a New Angular Project, navigate to the newly created project directory:
+      ng new angular-form-app
+      cd angular-form-app
 
-To start a local development server, run:
 
-```bash
-ng serve
-```
+  # Step 2: Create a New Component for the Form
+     ng generate component form
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+  # Step 3: Update the Form Component 
+    Open the src/app/form/form.component.html file and replace its contents with the following HTML to create a simple form:
+           <h2>Simple Form in Angular</h2>
 
-## Code scaffolding
+            <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+              <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" required [(ngModel)]="user.name" name="name" #name="ngModel">
+                <div *ngIf="name.invalid && name.touched" class="error">Name is required!</div>
+              </div>
+            
+              <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required [(ngModel)]="user.email" name="email" #email="ngModel">
+                <div *ngIf="email.invalid && email.touched" class="error">Valid email is required!</div>
+              </div>
+            
+              <button type="submit" [disabled]="userForm.invalid">Submit</button>
+            </form>
+            
+            <div *ngIf="submitted">
+              <h3>Submitted Data:</h3>
+              <p><strong>Name:</strong> {{ user.name }}</p>
+              <p><strong>Email:</strong> {{ user.email }}</p>
+            </div>
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+        Explanation of the Code:
+            ngForm: This directive creates a local template variable (userForm) to handle form state.
+            ngModel: It binds form controls to properties in the component (user.name and user.email).
+            ngSubmit: This event is triggered when the form is submitted, and it calls the onSubmit() method in the component.
+            Validation: Using the required attribute, we ensure that the fields must be filled in. We also display error messages using *ngIf if the user leaves a field invalid or untouched.
 
-```bash
-ng generate component component-name
-```
+# Step 4: Update the Form Component Logic
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+   Now, open the src/app/form/form.component.ts file and update the component class like this:
 
-```bash
-ng generate --help
-```
+        import { Component } from '@angular/core';
+        import { FormsModule } from '@angular/forms';  // Import FormsModule
+        
+        @Component({
+          selector: 'app-form',
+          templateUrl: './form.component.html',
+          styleUrls: ['./form.component.css'],
+          standalone: true,
+          imports: [FormsModule],  // Add FormsModule to imports array
+        })
+        export class FormComponent {
+          user = { name: '', email: '' };  // Initialize form data
+          submitted = false;
+        
+          onSubmit(form: any): void {
+            if (form.valid) {
+              this.submitted = true;
+            }
+          }
+        }
 
-## Building
+# Step 5: Add the Form Component to the Application
+      <app-form></app-form>
+      
+# Step 6: Add Basic Styling 
+    Open the src/app/form/form.component.css to add css 
 
-To build the project run:
+# Update AppComponent to Use Standalone Components
+    import { Component } from '@angular/core';
+    import { FormComponent } from './form/form.component';  // Import the FormComponent
 
-```bash
-ng build
-```
+    @Component({
+      selector: 'app-root',
+      templateUrl: './app.component.html',
+      styleUrls: ['./app.component.css'],
+      standalone: true,  // Mark app component as standalone
+      imports: [FormComponent],  // Import FormComponent here
+    })
+    export class AppComponent {
+      title = 'angular-form-app';
+    }
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+# Start the application
+   ng serve
+   
+![image](https://github.com/user-attachments/assets/24241a9e-7cd2-4df4-b761-61a2d0095158)
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
+
+
+
+
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
