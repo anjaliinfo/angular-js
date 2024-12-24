@@ -17,9 +17,26 @@
 
  # Open your browser and navigate to http://localhost:4200/. You should see the default Angular welcome page! 
 
- ![image](https://github.com/user-attachments/assets/3ab16a71-d1b7-427c-9bda-fab348b7ff92)
+ ![image](https://github.com/user-attachments/assets/3ab16a71-d1b7-427c-9bda-fab348b7ff92) 
 
+ # Step 5: Modify the Default Component
+   Open the src/app/app.component.html file. This file is responsible for rendering the content on the page and modify content to display the custom message.
 
+# Step 6: Add a New Component
+    Run the following command to generate the greeting component:
+    ng generate component greeting
+    ![image](https://github.com/user-attachments/assets/314a124a-318a-4615-9d91-1234fd8f1803)
+
+# Now, open the src/app/greeting/greeting.component.html file and add some content: 
+    <h2>Greetings from the Angular App!</h2>
+    <p>Have a great day!</p>
+
+# Next, open the src/app/app.component.html file and include the greeting component by adding its selector (found in greeting.component.ts):
+  <app-greeting></app-greeting>
+  
+# Step 7: View the Changes
+   Once you've made these changes, your Angular app should automatically reload in the browser. If not, just refresh the page at http://localhost:4200/, and you should see:
+  ![image](https://github.com/user-attachments/assets/d23445d8-b282-4633-9631-0f9c4c9e774b)
 
 
 # MyAngularApp
