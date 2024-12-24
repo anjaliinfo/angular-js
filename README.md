@@ -5,13 +5,13 @@
     ng new my-angular-app
 
 # Step 3: Navigate to the Project Directory
-   cd my-angular-app 
+       cd my-angular-app 
 
    ![image](https://github.com/user-attachments/assets/5b98f7f7-e738-4012-b446-07b9a9cb1798)
 
    
 # Step 4: Start the Application
-  ng serve
+      ng serve
 
  ![image](https://github.com/user-attachments/assets/4e5b037a-24ca-46f5-b259-92d36b04915b)
 
